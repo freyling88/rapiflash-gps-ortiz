@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#a70e28"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow">
+<title>GPS RapiFlash Ortiz · Control de entregas</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<style>
+:root{color-scheme:light;--red:#c81932;--dark:#300814;--yellow:#ffda42;--ink:#23141b;--muted:#71636a;--border:#eedce0;--bg:#fff8f3;--shadow:0 12px 34px rgba(75,16,29,.08)}*{box-sizing:border-box}html{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top,#ffe9e6 0%,#fff8f3 42%,#fffdfb 100%);color:var(--ink);min-height:100vh}button,input{font:inherit}button{cursor:pointer}.topbar{background:linear-gradient(125deg,#650b21,#c81932 75%);color:white;padding:14px max(18px,calc((100vw - 760px)/2));display:flex;align-items:center;gap:10px;box-shadow:0 5px 24px #690b2238}.brand-mark{font-size:27px;background:#ffdb46;color:#8e081c;width:46px;height:46px;display:grid;place-items:center;border-radius:13px;flex-shrink:0}.brand-copy{display:flex;flex-direction:column;line-height:1.12;white-space:nowrap}.brand-copy strong{font-size:18px;letter-spacing:-.4px}.brand-copy strong span{color:#ffdf54}.brand-copy small{font-size:9px;font-weight:800;letter-spacing:2px;margin-top:5px;color:#ffccd1}.online-indicator{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:11px;font-style:normal;background:#ffffff26;padding:8px 10px;border-radius:20px}.online-indicator em{font-style:normal}.online-indicator span{width:7px;height:7px;background:#85ffb3;border-radius:50%}.online-indicator.offline span{background:#ffd36a}.layout{max-width:760px;margin:auto;padding:26px 16px 38px;min-height:calc(100vh - 146px)}.hidden{display:none!important}h1{font-size:clamp(24px,5.8vw,33px);line-height:1.15;letter-spacing:-.9px;margin:9px 0 9px;color:#3b091b}h2{font-size:21px;margin:10px 0}p{line-height:1.53;color:var(--muted);margin:8px 0 19px}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--red);font-weight:900}.panel{border:1px solid var(--border);background:white;padding:22px;border-radius:23px;box-shadow:var(--shadow);margin-top:12px}.centered{text-align:center;padding:38px 20px}.spinner{width:36px;height:36px;border:4px solid #f6d5dc;border-top-color:var(--red);border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 20px}@keyframes spin{to{transform:rotate(360deg)}}.info-list{display:grid;gap:11px;margin:21px 0}.info-list>div{display:flex;gap:12px;align-items:center;color:var(--ink)}.info-list b{display:grid;place-items:center;background:#fff0bd;border-radius:50%;min-width:30px;height:30px;color:#7e111c}.form{display:grid;gap:9px;margin-top:20px}label{display:block;font-size:13px;font-weight:750;margin:14px 0 6px}input{width:100%;padding:14px 13px;border:1px solid #e6cdd3;background:#fffdfc;border-radius:13px;outline:none;color:#341621}input:focus{border-color:var(--red);box-shadow:0 0 0 3px #f52e5330}input[readonly]{background:#fff5e7}.button{border:0;border-radius:13px;font-weight:850;padding:14px 17px;min-height:46px;transition:transform .12s,opacity .12s}.button:active{transform:scale(.98)}.button:disabled{opacity:.53;cursor:not-allowed}.primary{background:linear-gradient(100deg,#ed3044,#b60e2b);color:white;width:100%;margin-top:11px}.yellow{background:#ffd83d;color:#421016}.secondary{background:#f6e5e8;color:#8d1230}.ghost{background:#fff0f1;color:#a61930}.danger-outline{width:100%;background:#fff;border:1.5px solid #c2243b;color:#a31028;margin-top:12px}.tiny{padding:9px 13px;min-height:34px}.section-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.section-heading h1{margin-bottom:0}.step-label{font-size:12px;font-weight:750;color:#8c6470}.pulse-dot{display:inline-block;width:8px;height:8px;background:#14a765;border-radius:50%;margin-right:5px}.fine-print,.small-muted{font-size:12px;color:#8e7b80;line-height:1.55;margin:16px 0 2px}.feedback{font-weight:700;font-size:13px;min-height:20px;margin:10px 0}.error-text{color:#b70024;font-weight:650;font-size:13px;min-height:18px}.live-heading,.viewer-topline{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:13px;flex-wrap:wrap}.live-badge{font-size:11px;letter-spacing:.8px;color:#0c8e52;background:#e7faed;padding:7px 10px;border-radius:19px;font-weight:900}.status-pill{font-size:12px;font-weight:800;border-radius:20px;background:#fff0b4;color:#764012;padding:8px 10px}.order-number{font-size:13px;color:#966576;font-weight:700}.map{width:100%;height:320px;background:#f2ebdd;border-radius:16px;overflow:hidden}.viewer-map{height:min(53vh,460px);min-height:285px}.stat-strip{display:flex;gap:11px;justify-content:space-between;font-size:12px;color:#795966;padding:13px 0;flex-wrap:wrap}.stat-strip b{color:#461a2b}.button-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.map-panel{padding:14px}.timeline{margin:20px 12px;display:grid;gap:16px}.timeline-item{display:flex;align-items:center;gap:12px;opacity:.48}.timeline-item i{width:34px;height:34px;border-radius:50%;background:#eddce0;color:#5d3641;font-style:normal;font-weight:850;display:grid;place-items:center;flex:none}.timeline-item b{display:block;font-size:14px}.timeline-item small{font-size:12px;color:var(--muted)}.timeline-item.completed,.timeline-item.active{opacity:1}.timeline-item.completed i{background:#e5fbe9;color:#15944c}.timeline-item.active i{background:var(--yellow);color:#6e2909}.bolt{font-size:.8em}footer{text-align:center;padding:15px 10px 28px;color:#a2878c;font-weight:750;font-size:12px}.moto-pin{background:#fbd72d;border:3px solid #ad1735;border-radius:50%;font-size:23px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px #ffda4270,0 5px 12px #320a2044;width:50px;height:50px}.leaflet-container{font-family:inherit!important}.leaflet-control-attribution{font-size:10px!important}@media(max-width:400px){.brand-copy strong{font-size:16px}.online-indicator{padding:6px}.online-indicator em{display:none}.panel{padding:16px}.layout{padding:18px 12px}.map-panel{padding:12px}}
+select{width:100%;padding:14px 13px;border:1px solid #e6cdd3;background:#fffdfc;border-radius:13px;color:#341621;font:inherit}.full{width:100%;margin-top:12px}.track-list{display:grid;gap:10px;margin-top:13px}.track-card{border:1px solid #f1d7de;background:#fffaf6;border-radius:13px;padding:13px;display:grid;gap:9px}.track-card strong{font-size:14px}.track-meta{font-size:12px;color:#795966}.track-actions{display:flex;gap:8px;flex-wrap:wrap}.track-actions button{flex:1;font-size:12px;padding:10px;border-radius:10px;border:0;min-width:110px;background:#f9e2e8;color:#8c1030;font-weight:750}.track-actions button.warning{background:#fff0be;color:#8a4305}.track-actions button.danger{background:#fde7e8;color:#be152c}.track-actions button:disabled{opacity:.45}.gps-warning{color:#a20d2a}.viewer-map.hidden{display:none}
+
+</style>
+</head><body>
+<header class="topbar"><div class="brand-mark">⚡</div><div class="brand-copy"><strong>Rapi<span>Flash</span> Ortiz</strong><small>GPS • SEGUIMIENTO PRIVADO</small></div><div class="online-indicator" id="onlineIndicator"><span></span><em>Conectado</em></div></header>
+<main class="layout">
+<section class="panel centered" id="loadingPanel"><div class="spinner"></div><h1>Abriendo GPS...</h1><p>Conectando con Firebase</p></section>
+<section class="panel hidden" id="setupPanel"><div class="eyebrow">CONFIGURACIÓN PENDIENTE</div><h1>Configurar Firebase</h1><p>Falta colocar la configuración de tu app web en el archivo <code>firebase-config.js</code> y publicarla por HTTPS. Leé INSTRUCCIONES.md.</p></section>
+<section class="panel hidden" id="loginPanel"><div class="eyebrow">ACCESO PRIVADO</div><h1>Entrar a RapiFlash GPS</h1><p>Solo el administrador y los repartidores autorizados pueden entrar.</p><form id="loginForm" class="form"><label for="email">Correo electrónico</label><input id="email" type="email" autocomplete="username" required><label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn" class="button primary">Entrar</button></form><p class="error-text" id="loginError" role="alert"></p><p class="fine-print">No se permite registrar usuarios desde esta página.</p></section>
+<section id="workspace" class="hidden">
+<div class="section-heading"><div><div class="eyebrow">GPS DE RAPIFLASH ORTIZ</div><h1 id="welcome">Mi panel</h1></div><button class="button ghost tiny" id="logoutBtn">Salir</button></div>
+<section id="adminPanel" class="hidden">
+<div class="panel"><div class="eyebrow">SOLO ADMINISTRADOR</div><h2>Crear un seguimiento</h2><p>Vos sos el único que genera y comparte enlaces de seguimiento desde este panel.</p><label for="orderInput">Código de pedido</label><input id="orderInput" maxlength="40" placeholder="Ej. RF-125"><label for="driverSelect">Asignar repartidor</label><select id="driverSelect"></select><button id="createBtn" class="button primary">Crear seguimiento y enlace</button><p class="feedback" id="adminMessage" role="status"></p></div>
+<div class="panel hidden" id="sharePanel"><h2>Enlace del cliente</h2><p>Compartilo por WhatsApp. El cliente verá la moto cuando el repartidor active el GPS.</p><label for="linkInput">Enlace privado</label><input readonly id="linkInput"><div class="button-grid"><button class="button yellow" id="waBtn">Enviar por WhatsApp</button><button class="button secondary" id="copyBtn">Copiar enlace</button></div></div>
+<div class="panel"><h2>Seguimientos recientes</h2><p class="fine-print">Podés compartir un enlace de nuevo o finalizarlo para que deje de mostrar la ubicación.</p><div id="adminTracks" class="track-list"><p>No hay seguimientos todavía.</p></div></div>
+<div class="panel"><h2>Registrar repartidor</h2><p>Primero creá su cuenta en Firebase Authentication y copiá su UID. Después agregalo acá.</p><label for="uidInput">UID de Firebase</label><input id="uidInput" autocomplete="off" placeholder="Pegá el UID"><label for="nameInput">Nombre del repartidor</label><input id="nameInput" maxlength="55" placeholder="Ej. Repartidor 1"><button class="button secondary full" id="addDriverBtn">Autorizar repartidor</button><p id="driverManageMessage" role="status" class="feedback"></p><div id="driverRoster" class="track-list"></div></div>
+</section>
+<section class="panel hidden" id="driverPanel"><div class="eyebrow">PANEL DEL REPARTIDOR</div><h2>Mis recorridos</h2><p>Seleccioná el pedido asignado. Solo transmitís tu ubicación; los enlaces los envía el administrador.</p><div id="driverAssignments" class="track-list"></div><div class="hidden" id="gpsPanel"><div class="live-heading"><span class="live-badge">● GPS ACTIVO</span><b id="currentOrder">Pedido</b></div><div id="driverMap" class="map"></div><div class="stat-strip"><span>Precisión: <b id="accuracyText">—</b></span><span id="lastSent">Esperando señal...</span></div><button class="button danger-outline" id="stopBtn">Detener mi GPS</button><p class="fine-print">Para compartir ubicación, conservá esta página abierta en primer plano. Con el celular bloqueado el navegador puede suspenderla.</p></div><p class="feedback" id="driverMessage" role="status"></p></section>
+</section>
+<section id="viewerPanel" class="hidden"><div class="eyebrow">SEGUIMIENTO DE TU PEDIDO</div><h1>Tu delivery viene en camino ⚡</h1><p>Seguí la ubicación de tu repartidor de RapiFlash Ortiz.</p><div class="panel map-panel"><div class="viewer-topline"><span class="status-pill" id="viewerStatus">Esperando GPS</span><span class="order-number" id="viewerOrder"></span></div><div class="map viewer-map hidden" id="viewerMap"></div><div class="stat-strip"><span>Repartidor: <b id="viewerDriver">—</b></span><span id="viewerUpdated">Sin señal todavía</span></div></div><p class="fine-print" id="viewerNote">Este enlace es privado. No lo reenvíes a otras personas. La ubicación depende de la conexión y del GPS del repartidor.</p></section>
+</main><footer>⚡ Más rápido que el rayo · Delivery RapiFlash Ortiz</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script type="module">
+// RapiFlash Ortiz V3: administración exclusiva de enlaces, GPS de repartidores y vista de clientes.
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
+import { getDatabase, ref, get, set, update, remove, onValue, serverTimestamp, onDisconnect } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js';
+const firebaseConfig = {
+  "apiKey": "AIzaSyCh-y5tRsYh12tmkKXzFa5ZgyLF2LU-tVA",
+  "authDomain": "rapiflash-gps-ortiz.firebaseapp.com",
+  "databaseURL": "https://rapiflash-gps-ortiz-default-rtdb.firebaseio.com",
+  "projectId": "rapiflash-gps-ortiz",
+  "storageBucket": "rapiflash-gps-ortiz.firebasestorage.app",
+  "messagingSenderId": "298845471078",
+  "appId": "1:298845471078:web:712066c8a7d5d505108a7"
+};
+
+const $ = id => document.getElementById(id);
+const show = (id, yes=true) => $(id).classList.toggle('hidden', !yes);
+const msg = (id, text) => { $(id).textContent = text; };
+const validId = id => typeof id === 'string' && /^[A-Za-z0-9_-]{43}$/.test(id);
+const isConfigured = typeof firebaseConfig.apiKey === 'string' && !firebaseConfig.apiKey.includes('PEGA_AQUI') && firebaseConfig.databaseURL && typeof firebaseConfig.appId === 'string' && !firebaseConfig.appId.includes('PEGA_AQUI');
+const routeId = new URLSearchParams(location.hash.slice(1)).get('seguir');
+let db, auth, currentUser = null, isAdmin = false, displayName = '', authUnsubs = [], assignmentUnsubs = [];
+let driverRecords = {}, tracks = {}, ownAssignments = {};
+let gpsWatch = null, gpsHeartbeat = null, gpsActiveId = null, gpsLastPos = null, lastSent = 0, sending = false;
+let mapDriver, markerDriver, mapViewer, markerViewer, viewerCircle, viewerData = null;
+
+function errorText(err) {
+  if (err?.code?.includes('permission-denied')) return 'Permiso denegado: revisá los usuarios autorizados y las reglas.';
+  if (err?.code?.includes('invalid-credential')) return 'Correo o contraseña incorrectos.';
+  if (err?.code?.includes('network')) return 'No se pudo conectar. Revisá el internet.';
+  return (err?.message || 'Ocurrió un problema.').slice(0,160);
+}
+function node(tag, text, className) {
+  const el = document.createElement(tag); if(text!==undefined) el.textContent=String(text);
+  if(className) el.className=className; return el;
+}
+function makeButton(text, onClick, className) {
+  const el=node('button', text, className||'');el.type='button';el.addEventListener('click',onClick);return el;
+}
+function setNetworkState() {
+  $('onlineIndicator').classList.toggle('offline',!navigator.onLine);
+  $('onlineIndicator').querySelector('em').textContent=navigator.onLine?'Conectado':'Sin internet';
+}
+window.addEventListener('online',setNetworkState);window.addEventListener('offline',setNetworkState);setNetworkState();
+function shareUrl(id) { const url = new URL(location.href); url.hash='seguir='+id; url.search=''; return url.toString(); }
+function randomId() {
+  const bytes = new Uint8Array(32); crypto.getRandomValues(bytes);
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function chooseShare(id) { $('linkInput').value=shareUrl(id); show('sharePanel'); $('sharePanel').scrollIntoView({behavior:'smooth',block:'center'}); }
+function whatsapp() { const text='⚡ RapiFlash Ortiz: seguí tu delivery en tiempo real. Enlace privado:\n'+$('linkInput').value; window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener,noreferrer'); }
+function attach(unsub) {authUnsubs.push(unsub);return unsub;}
+function cleanSubscriptions() { for(const unsub of [...authUnsubs,...assignmentUnsubs]){try{unsub();}catch{}}authUnsubs=[];assignmentUnsubs=[]; }
+function clearGpsWatch() {if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;if(gpsHeartbeat)clearInterval(gpsHeartbeat);gpsHeartbeat=null;}
+function mapAt(which, coords) {
+  if(typeof L==='undefined')return;
+  const isDriver=which==='driver';let map=isDriver?mapDriver:mapViewer;
+  if(!map){map=L.map(isDriver?'driverMap':'viewerMap').setView([coords.lat,coords.lng],16);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);if(isDriver)mapDriver=map;else mapViewer=map;}
+  const icon=L.divIcon({className:'',html:'<div class="moto-pin">🏍️</div>',iconSize:[50,50],iconAnchor:[25,25]});
+  let marker=isDriver?markerDriver:markerViewer;
+  if(!marker){marker=L.marker([coords.lat,coords.lng],{icon}).addTo(map);if(isDriver)markerDriver=marker;else markerViewer=marker;}else marker.setLatLng([coords.lat,coords.lng]);
+  if(!isDriver) {
+    if(!viewerCircle)viewerCircle=L.circle([coords.lat,coords.lng],{radius:Math.max(10,coords.precision||0),color:'#c81932',fillOpacity:.08,weight:1}).addTo(map);
+    else{viewerCircle.setLatLng([coords.lat,coords.lng]);viewerCircle.setRadius(Math.max(10,coords.precision||0));}
+  }
+  map.panTo([coords.lat,coords.lng]);setTimeout(()=>map.invalidateSize(),150);
+}
+
+if(!isConfigured){show('loadingPanel',false);show('setupPanel');}
+else {
+  try{
+    db=getDatabase(initializeApp(firebaseConfig));
+    if(routeId!==null){show('loadingPanel',false);show('viewerPanel');openViewer(routeId);}
+    else {auth=getAuth();onAuthStateChanged(auth, loadSession, err=>{show('loadingPanel',false);show('loginPanel');msg('loginError',errorText(err));});}
+  }catch(err){show('loadingPanel',false);show('setupPanel');console.error(err);}
+}
+
+$('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();const btn=$('loginBtn');btn.disabled=true;msg('loginError','');
+  try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value);$('password').value='';}
+  catch(err){msg('loginError',errorText(err));}finally{btn.disabled=false;}
+});
+$('logoutBtn').addEventListener('click',async()=>{
+  if(gpsActiveId){msg('driverMessage','Primero detené tu GPS antes de salir.');return;}
+  await signOut(auth);
+});
+
+async function loadSession(user) {
+  cleanSubscriptions();clearGpsWatch();currentUser=user;isAdmin=false;displayName='';gpsActiveId=null;
+  show('loadingPanel',false);show('workspace',false);show('adminPanel',false);show('driverPanel',false);
+  if(!user){show('loginPanel');return;}
+  try{
+    const [adminSnap,driverSnap]=await Promise.all([get(ref(db,'authorizedAdmins/'+user.uid)),get(ref(db,'authorizedDrivers/'+user.uid))]);
+    isAdmin=adminSnap.val()===true;
+    const isDriver=driverSnap.val()?.activo===true;
+    if(!isAdmin&&!isDriver){show('loginPanel');msg('loginError','Este usuario no está autorizado. Primero agregalo en Firebase.');return;}
+    displayName=isDriver?driverSnap.val().nombre:'Administrador';
+    $('welcome').textContent=isAdmin?'Panel de administrador':'Mi GPS';
+    show('loginPanel',false);show('workspace');show('adminPanel',isAdmin);show('driverPanel',true);
+    attach(onValue(ref(db,'asignaciones/'+user.uid),s=>{ownAssignments=s.val()||{};watchOwnAssignments();},err=>msg('driverMessage',errorText(err))));
+    if(isAdmin){
+      attach(onValue(ref(db,'authorizedDrivers'),s=>{driverRecords=s.val()||{};renderDriverSelect();renderDriverRoster();},err=>msg('adminMessage',errorText(err))));
+      attach(onValue(ref(db,'seguimientos'),s=>{tracks=s.val()||{};renderAdminTracks();},err=>msg('adminMessage',errorText(err))));
+    }
+  }catch(err){show('loginPanel');msg('loginError',errorText(err));}
+}
+function renderDriverSelect() {
+  const select=$('driverSelect'),prior=select.value;select.replaceChildren();
+  const self=node('option','Yo mismo (prueba de GPS)');self.value=currentUser.uid;select.append(self);
+  for(const [uid,driver] of Object.entries(driverRecords)) {
+    if(!driver?.activo || uid===currentUser.uid)continue;
+    const option=node('option',driver.nombre||uid);option.value=uid;select.append(option);
+  }
+  if([...select.options].some(x=>x.value===prior))select.value=prior;
+}
+function renderDriverRoster() {
+  const box=$('driverRoster');box.replaceChildren();
+  Object.entries(driverRecords).forEach(([uid,d])=>{
+    const item=node('div',undefined,'track-card');item.append(node('strong',d.nombre||'Sin nombre'),node('span',(d.activo?'Autorizado':'Desactivado')+' · UID: '+uid.slice(0,9)+'…','track-meta'));
+    if(uid!==currentUser.uid)item.append(makeButton(d.activo?'Desactivar repartidor':'Activar repartidor',async()=>{
+      try{await update(ref(db,'authorizedDrivers/'+uid),{activo:!d.activo});}catch(err){msg('driverManageMessage',errorText(err));}
+    },'button secondary'));
+    box.append(item);
+  });
+  if(!Object.keys(driverRecords).length)box.append(node('p','No hay repartidores agregados. Podés probar con tu propia cuenta de administrador.'));
+}
+$('addDriverBtn').addEventListener('click',async()=>{
+  const uid=$('uidInput').value.trim(),name=$('nameInput').value.trim();
+  if(!/^[A-Za-z0-9]{10,128}$/.test(uid)){msg('driverManageMessage','Pegá un UID válido copiado desde Firebase Authentication.');return;}
+  if(name.length<2 || name.length>55){msg('driverManageMessage','Ingresá el nombre del repartidor.');return;}
+  const btn=$('addDriverBtn');btn.disabled=true;
+  try{await set(ref(db,'authorizedDrivers/'+uid),{nombre:name,activo:true});msg('driverManageMessage','Repartidor autorizado. Ahora puede iniciar sesión con su cuenta de Firebase.');$('uidInput').value='';$('nameInput').value='';}
+  catch(err){msg('driverManageMessage',errorText(err));}finally{btn.disabled=false;}
+});
+$('createBtn').addEventListener('click',async()=>{
+  if(!isAdmin)return;
+  const btn=$('createBtn'),uid=$('driverSelect').value,code=$('orderInput').value.trim().slice(0,40)||'Sin código';
+  if(!uid){msg('adminMessage','Seleccioná un repartidor.');return;}
+  const driver=uid===currentUser.uid?'Administrador':driverRecords[uid]?.nombre;
+  if(!driver){msg('adminMessage','El repartidor no está autorizado.');return;}
+  const id=randomId();btn.disabled=true;
+  try{
+    await update(ref(db),{
+      ['seguimientos/'+id]:{pedido:code,repartidor:driver,repartidorUid:uid,estado:'activo',creado:serverTimestamp(),expira:Date.now()+7200000},
+      ['asignaciones/'+uid+'/'+id]:true
+    });
+    chooseShare(id);msg('adminMessage','Seguimiento creado. Enviá el enlace al cliente cuando corresponda.');$('orderInput').value='';
+  }catch(err){msg('adminMessage','No se pudo crear: '+errorText(err));}finally{btn.disabled=false;}
+});
+$('waBtn').addEventListener('click',whatsapp);
+$('copyBtn').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText($('linkInput').value);msg('adminMessage','Enlace copiado.');}
+  catch{ $('linkInput').focus();$('linkInput').select();msg('adminMessage','Seleccioná y copiá el enlace.');}
+});
+function renderAdminTracks() {
+  const box=$('adminTracks');box.replaceChildren();
+  const entries=Object.entries(tracks).sort((a,b)=>(b[1]?.creado||0)-(a[1]?.creado||0)).slice(0,30);
+  if(!entries.length){box.append(node('p','No hay seguimientos todavía.'));return;}
+  entries.forEach(([id,t])=>{
+    const card=node('div',undefined,'track-card');card.append(node('strong',(t.pedido||'Pedido')+' · '+(t.repartidor||'Repartidor')));
+    const done=t.estado==='finalizado',expired=t.expira<Date.now();
+    const updated=t.posicion?.actualizado?Math.round((Date.now()-t.posicion.actualizado)/1000):null;
+    card.append(node('span',done?'Finalizado':expired?'Enlace caducado':updated!==null&&updated<80?'GPS conectado':'Esperando GPS','track-meta'));
+    const actions=node('div',undefined,'track-actions');
+    actions.append(makeButton('Compartir enlace',()=>chooseShare(id),'warning'));
+    if(!done)actions.append(makeButton('Finalizar pedido',async()=>{
+      if(!confirm('¿Finalizar el pedido y ocultar la ubicación al cliente?'))return;
+      try{await update(ref(db,'seguimientos/'+id),{estado:'finalizado',posicion:null});msg('adminMessage','Seguimiento finalizado.');}
+      catch(err){msg('adminMessage',errorText(err));}
+    },'danger'));
+    card.append(actions);box.append(card);
+  });
+}
+
+function watchOwnAssignments() {
+  for(const unsub of assignmentUnsubs){try{unsub();}catch{}}assignmentUnsubs=[];
+  const ids=Object.keys(ownAssignments).filter(validId);
+  const my={};
+  if(!ids.length){renderAssignments(my);return;}
+  ids.forEach(id=>{
+    const unsub=onValue(ref(db,'seguimientos/'+id),snap=>{
+      if(snap.exists())my[id]=snap.val();else delete my[id];
+      renderAssignments(my);
+      if(gpsActiveId===id&&(!snap.exists()||snap.val().estado!=='activo'||snap.val().expira<=Date.now())){
+        clearGpsWatch();gpsActiveId=null;show('gpsPanel',false);msg('driverMessage','Este pedido fue finalizado o su enlace caducó.');
+      }
+    },err=>{delete my[id];renderAssignments(my);msg('driverMessage',errorText(err));});
+    assignmentUnsubs.push(unsub);
+  });
+}
+function renderAssignments(list) {
+  const box=$('driverAssignments');box.replaceChildren();
+  const items=Object.entries(list).filter(([,t])=>t.estado==='activo'&&t.expira>Date.now()).sort((a,b)=>b[1].creado-a[1].creado);
+  if(!items.length){box.append(node('p','No tenés pedidos asignados. El administrador puede crear uno.'));return;}
+  for(const [id,t] of items){
+    const card=node('div',undefined,'track-card');card.append(node('strong','Pedido '+t.pedido));
+    card.append(node('span',t.posicion?'GPS registrado':'Esperando GPS','track-meta'));
+    const btn=makeButton(gpsActiveId===id?'GPS encendido':'Activar mi GPS',()=>activateGps(id,t),'warning');btn.disabled=!!gpsActiveId;card.append(btn);box.append(card);
+  }
+}
+async function activateGps(id,t) {
+  if(gpsActiveId||!validId(id))return;
+  if(!navigator.geolocation){msg('driverMessage','Tu celular no permite GPS.');return;}
+  if(!window.isSecureContext){msg('driverMessage','Abrí la página usando HTTPS para permitir el GPS.');return;}
+  msg('driverMessage','Autorizá la ubicación precisa cuando aparezca el permiso.');
+  try{
+    const pos=await new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,{enableHighAccuracy:true,timeout:20000,maximumAge:5000}));
+    const path=ref(db,'seguimientos/'+id+'/posicion');
+    gpsActiveId=id;gpsLastPos=pos;show('gpsPanel');$('currentOrder').textContent='Pedido '+t.pedido;
+    // Limpia la ubicación cuando la conexión con Firebase se cierre.
+    try{await onDisconnect(path).remove();}catch(e){console.warn('No se activó limpieza por desconexión:',e);}
+    await sendGps(true);mapAt('driver',{lat:pos.coords.latitude,lng:pos.coords.longitude,precision:pos.coords.accuracy});
+    gpsWatch=navigator.geolocation.watchPosition(p=>{
+      gpsLastPos=p;mapAt('driver',{lat:p.coords.latitude,lng:p.coords.longitude,precision:p.coords.accuracy});
+      if(Date.now()-lastSent>=20000)sendGps();
+    },err=>msg('driverMessage','Error de ubicación: '+err.message),{enableHighAccuracy:true,timeout:20000,maximumAge:5000});
+    gpsHeartbeat=setInterval(()=>sendGps(),30000);
+    msg('driverMessage','GPS compartiendo únicamente con el seguimiento asignado.');
+  }catch(err){clearGpsWatch();gpsActiveId=null;show('gpsPanel',false);msg('driverMessage','No se pudo activar: '+errorText(err));}
+}
+async function sendGps(force=false) {
+  if(!gpsActiveId||!gpsLastPos||sending||!navigator.onLine)return;
+  if(Date.now()-gpsLastPos.timestamp>60000){msg('driverMessage','GPS sin ubicación reciente. Revisá la señal.');return;}
+  if(!force&&Date.now()-lastSent<18000)return;
+  sending=true;
+  try{
+    const p=gpsLastPos.coords;
+    await set(ref(db,'seguimientos/'+gpsActiveId+'/posicion'),{lat:p.latitude,lng:p.longitude,precision:Math.round(p.accuracy),actualizado:serverTimestamp()});
+    lastSent=Date.now();$('accuracyText').textContent=Math.round(p.accuracy)+' m';$('lastSent').textContent='Señal enviada '+new Date().toLocaleTimeString('es-NI');
+  }catch(err){msg('driverMessage','No se envió la ubicación: '+errorText(err));}finally{sending=false;}
+}
+$('stopBtn').addEventListener('click',async()=>{
+  if(!gpsActiveId)return;const id=gpsActiveId;
+  try{await remove(ref(db,'seguimientos/'+id+'/posicion'));}
+  catch(err){msg('driverMessage','No se pudo detener el GPS remoto. Revisá internet: '+errorText(err));return;}
+  clearGpsWatch();gpsActiveId=null;gpsLastPos=null;lastSent=0;show('gpsPanel',false);
+  msg('driverMessage','GPS detenido. El administrador puede finalizar el pedido.');
+  watchOwnAssignments();
+});
+
+function openViewer(id){
+  if(!validId(id)){viewerFail('Enlace incorrecto o incompleto.');return;}
+  onValue(ref(db,'seguimientos/'+id),snap=>{
+    if(!snap.exists()){viewerFail('Este enlace no existe o ya fue eliminado.');return;}
+    viewerData=snap.val();renderViewer();
+  },()=>viewerFail('No se puede abrir este enlace. Es posible que haya caducado.'));
+  setInterval(renderViewer,10000);
+}
+function viewerFail(text){$('viewerStatus').textContent='No disponible';$('viewerUpdated').textContent=text;show('viewerMap',false);}
+function renderViewer(){
+  if(!viewerData)return;const t=viewerData;
+  $('viewerOrder').textContent='Pedido '+(t.pedido||'');$('viewerDriver').textContent=t.repartidor||'RapiFlash Ortiz';
+  if(t.estado!=='activo'||t.expira<=Date.now()){
+    $('viewerStatus').textContent=t.estado!=='activo'?'Pedido finalizado':'Enlace caducado';$('viewerUpdated').textContent='GPS desactivado';show('viewerMap',false);return;
+  }
+  const p=t.posicion,seconds=p?.actualizado?Math.max(0,Math.floor((Date.now()-p.actualizado)/1000)):null;
+  if(!p||typeof p.lat!=='number'||typeof p.lng!=='number'||seconds===null){$('viewerStatus').textContent='Esperando GPS';$('viewerUpdated').textContent='El repartidor aún no activó su ubicación';show('viewerMap',false);return;}
+  if(seconds>120){$('viewerStatus').textContent='Señal interrumpida';$('viewerUpdated').textContent='Última señal hace '+Math.floor(seconds/60)+' min';show('viewerMap',false);return;}
+  show('viewerMap');$('viewerStatus').textContent='● En camino';$('viewerUpdated').textContent=seconds<10?'Ubicación actualizada ahora':'Actualizada hace '+seconds+' segundos';mapAt('viewer',p);
+}
+
+</script>
+</body></html>
